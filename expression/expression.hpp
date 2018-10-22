@@ -33,7 +33,7 @@ namespace EXPRESSION
 	{
 		"+", "-", "*", "/", "%", "(", ")", ","
 	};
-	static const std::size_t operatorListSize = sizeof(operatorList) / sizeof(char);
+	static const std::size_t operatorListSize = sizeof(operatorList) / sizeof(std::string);
 
 	//-----------------------------------------------------------------------------
 	//功能函数
@@ -42,7 +42,7 @@ namespace EXPRESSION
 		//最大最小 目前只支持2参数
 		//向上 向下取整
 		//绝对值 平均值 包三搭
-		"min", "max", "ceil", "floor", "sqrt", "abs", "bsd"
+		"min", "max", "ceil", "floor", "sqrt", "abs"
 	};
 	static const std::size_t funcListSize = sizeof(funcList) / sizeof(std::string);
 
