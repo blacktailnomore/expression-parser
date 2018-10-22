@@ -383,6 +383,7 @@ namespace EXPRESSION
 	1.所有数字都用double计算
 	2.采用后缀表达式形式
 	*/
+	template<class T>
 	class ExpressionParser
 	{
 	public:
@@ -399,13 +400,13 @@ namespace EXPRESSION
 			_expNifixToSuffix();
 		}
 	public:
-		double getResult()
+		T getResult()
 		{
 			return _getResult();
 		}
 	private:
 		//求值
-		double _getResult()
+		T _getResult()
 		{
 			double res = 0.0f;
 
@@ -647,11 +648,7 @@ namespace EXPRESSION
 			}
 		}
 
-		//特殊值初始化
-		void specialInitializer(const std::string key, T val)
-		{
-			m_mapSpecialValue[key] = val;
-		}
+
 	private:
 		//分析 把容器中的字符串变成普通的四则运算
 		void _analyzer(exprVec& subExpr, std::size_t pos)
@@ -920,8 +917,6 @@ namespace EXPRESSION
 
 			return pos;
 		}
-	private:
-		std::map<std::string, double> m_mapSpecialValue;
 	};
 }
 
