@@ -5,6 +5,7 @@
 常用排序算法
 */
 
+
 template<typename T>
 void swap(T& a, T& b)
 {
@@ -49,7 +50,7 @@ void selectSort(T arr[], int n)
 	}
 }
 
-//插入.
+//插入.直接
 template<typename T>
 void insertSort(T arr[], int n)
 {
@@ -62,10 +63,11 @@ void insertSort(T arr[], int n)
 		int index = i - 1;
 		while (index >= 0 && arr[index] > tmp)
 		{
-			arr[index + 1] = arr[index];
+			//arr[index + 1] = arr[index];
+			::swap(arr[index + 1], arr[index]);
 			index--;
 		}
-		arr[index + 1] = tmp;
+		//arr[index + 1] = tmp;
 	}
 }
 
@@ -76,9 +78,62 @@ void insertSort(T arr[], int n)
 template<typename T>
 void quickSort(T arr[], int left, int right)
 {
-	T ele = arr[right];
-	while (left < right)
-	{
+	if (left >= right) return;
 
+	int index = left;
+
+	int leftTmp = left + 1;
+	int rightTmp = right;
+	while (leftTmp != rightTmp)
+	{	
+		while (leftTmp != rightTmp)
+		{
+			if (rightTmp > leftTmp
+				&& arr[rightTmp] < arr[index])
+			{
+				::swap(arr[rightTmp], arr[index]);
+				index = rightTmp;
+				break;
+			}
+			rightTmp--;
+		}
+		while (leftTmp != rightTmp)
+		{
+			if (leftTmp < rightTmp
+				&& arr[leftTmp] > arr[index])
+			{
+				::swap(arr[leftTmp], arr[index]);
+				index = leftTmp;
+				break;
+			}
+			leftTmp++;
+		}
 	}
+	quickSort(arr, left, rightTmp - 1);
+	quickSort(arr, rightTmp + 1, right);
 }
+
+/*
+希尔
+1.从下标0开始按一定增量分组，对这些组分别插入排序
+->比如说：43，3，32，12，7，8，3
+		  增量=7/2,分为[43,12],[3,7],[32,8],[3]
+		  并不是真的分组，只是把这两个下标(0,0+7/2)看成是一组
+*/
+
+
+
+/*
+堆排
+*/
+
+
+/*
+归并
+1.拆分成根号n组，分别排序
+2.两两合并，如果剩下的组数没有达到1就继续合并到1
+*/
+
+
+
+
